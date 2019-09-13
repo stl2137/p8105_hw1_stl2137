@@ -3,3 +3,19 @@ title: "p8105_hw1_stl2137.Rmd"
 output: github_document
 ---
 
+```{r, include = FALSE}
+library(tidyverse)
+```
+
+#Homework 1 Problem 1
+
+Creating the dataframe request in question 1
+```{r}
+hw1q1_df <- tibble(
+  random_normsample = rnorm(8),
+  pos_random_normsample = as.logical(random_normsample > 0), 
+  charac_vector = as.character("a", "b", "c", "d", "e", "f", "g", "h"),
+  factor_vector = as.factor(c(1, 1, 2, 3, 2, 1, 2, 3))
+)
+```
+
