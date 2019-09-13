@@ -33,6 +33,7 @@ num_factor_vector <- as.numeric(hw1q1_df$factor_vector)
 ```
 By utilizing `as.numeric`, we are changing the class of the variables from their original form to numeric. This enables us to calculate the mean of numbers. In my specific case, there is still an error when I use `as.numeric(hw1q1_df$charac_vector)` because my character vector is comprised of letters, which cannot be averaged.
 
+### Converting logical factors
 ```{r}
 # Logical vector to numeric, multiply random sample by result
 num_pos_random_normsample <- as.numeric(hw1q1_df$pos_random_normsample)
@@ -46,4 +47,16 @@ fac_pos_random_normsample*hw1q1_df$random_normsample
 num_fac_pos_random_normsample <- as.numeric(fac_pos_random_normsample)
 num_fac_pos_random_normsample*hw1q1_df$random_normsample
 ```
+
+# Homework 1 Question 2
+```{r}
+hw1q2_df <- tibble(
+  x = rnorm(500),
+  y = rnorm(500),
+  greater_than_combined = (x + y > 1),
+  num_greater_than_comb = as.numeric(hw1q2_df$greater_than_combined),
+  fac_greater_than_comb = as.factor(hw1q2_df$greater_than_combined)
+)
+```
+
 
