@@ -7,9 +7,9 @@ output: github_document
 library(tidyverse)
 ```
 
-#Homework 1 Problem 1
+# Homework 1 Problem 1
 
-Creating the dataframe request in question 1
+## Creating the dataframe request in question 1
 ```{r}
 hw1q1_df <- tibble(
   random_normsample = rnorm(8),
@@ -22,5 +22,13 @@ mean(hw1q1_df$random_normsample)
 mean(hw1q1_df$pos_random_normsample)
 mean(hw1q1_df$charac_vector)
 mean(hw1q1_df$factor_vector)
+```
+Arguments that are not numeric or logical, such as character or factor arguments, will return NA, as seen by the error messages incurred above.
+
+### Applying the as.numeric function to the logical, character, and factor variables:
+```{r, eval = FALSE}
+num_pos_random_normsample <- as.numeric(hw1q1_df$pos_random_normsample)
+num_charac_vector <- as.numeric(hw1q1_df$charac_vector)
+num_factor_vector <- as.numeric(hw1q1_df$factor_vector)
 ```
 
