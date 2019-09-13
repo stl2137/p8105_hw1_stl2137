@@ -31,4 +31,19 @@ num_pos_random_normsample <- as.numeric(hw1q1_df$pos_random_normsample)
 num_charac_vector <- as.numeric(hw1q1_df$charac_vector)
 num_factor_vector <- as.numeric(hw1q1_df$factor_vector)
 ```
+By utilizing `as.numeric`, we are changing the class of the variables from their original form to numeric. This enables us to calculate the mean of numbers. In my specific case, there is still an error when I use `as.numeric(hw1q1_df$charac_vector)` because my character vector is comprised of letters, which cannot be averaged.
+
+```{r}
+# Logical vector to numeric, multiply random sample by result
+num_pos_random_normsample <- as.numeric(hw1q1_df$pos_random_normsample)
+num_pos_random_normsample*hw1q1_df$random_normsample
+
+# Logical vector to factor, multiply random sample by result
+fac_pos_random_normsample <- as.factor(hw1q1_df$pos_random_normsample)
+fac_pos_random_normsample*hw1q1_df$random_normsample
+
+#Logical vector to factor, convert result to numeric, multiple random sample by result
+num_fac_pos_random_normsample <- as.numeric(fac_pos_random_normsample)
+num_fac_pos_random_normsample*hw1q1_df$random_normsample
+```
 
