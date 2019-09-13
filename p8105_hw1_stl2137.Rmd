@@ -54,9 +54,11 @@ hw1q2_df <- tibble(
   x = rnorm(500),
   y = rnorm(500),
   greater_than_combined = (x + y > 1),
-  num_greater_than_comb = as.numeric(hw1q2_df$greater_than_combined),
-  fac_greater_than_comb = as.factor(hw1q2_df$greater_than_combined)
+  num_greater_than_comb = as.numeric(greater_than_combined),
+  fac_greater_than_comb = as.factor(greater_than_combined)
 )
 ```
-
+* The size of the dataset is `r nrow(hw1q2_df)` observations and `r ncol(hw1q2_df)` variables.
+* The mean, median, and standard deviation of x are respectively `r mean(hw1q2_df$x)`, `r median(hw1q2_df$x)`, and `r sd(hw1q2_df$x)`.
+* The proportion of cases which `x + y > 1 ` is true is `r sum(hw1q2_df$greater_than_combined, na.rm = TRUE)/nrow(hw1q2_df)`.
 
