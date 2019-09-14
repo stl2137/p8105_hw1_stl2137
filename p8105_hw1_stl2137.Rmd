@@ -7,7 +7,7 @@ output: github_document
 library(tidyverse)
 ```
 
-# Homework 1 Problem 1
+# Homework 1 Question 1
 
 ## Creating the dataframe request in question 1
 ```{r}
@@ -61,4 +61,14 @@ hw1q2_df <- tibble(
 * The size of the dataset is `r nrow(hw1q2_df)` observations and `r ncol(hw1q2_df)` variables.
 * The mean, median, and standard deviation of x are respectively `r mean(hw1q2_df$x)`, `r median(hw1q2_df$x)`, and `r sd(hw1q2_df$x)`.
 * The proportion of cases which `x + y > 1 ` is true is `r sum(hw1q2_df$greater_than_combined, na.rm = TRUE)/nrow(hw1q2_df)`.
+```{r}
+ggplot(hw1q2_df, aes(x = x, y = y, color = greater_than_combined)) +
+  geom_point()
+
+ggplot(hw1q2_df, aes(x = x, y = y, color = num_greater_than_comb)) +
+  geom_point()
+
+ggplot(hw1q2_df, aes(x = x, y = y, color = fac_greater_than_comb)) +
+  geom_point()
+```
 
