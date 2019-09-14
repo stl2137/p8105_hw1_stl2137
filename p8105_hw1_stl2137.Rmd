@@ -70,5 +70,7 @@ ggplot(hw1q2_df, aes(x = x, y = y, color = num_greater_than_comb)) +
 
 ggplot(hw1q2_df, aes(x = x, y = y, color = fac_greater_than_comb)) +
   geom_point()
+
+ggsave("logical_plot.png")
 ```
 
