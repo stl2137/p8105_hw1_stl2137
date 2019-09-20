@@ -10,6 +10,7 @@ library(tidyverse)
 # Homework 1 Question 1
 
 ## Creating the dataframe request in question 1
+
 ```{r}
 hw1q1_df <- tibble(
   random_normsample = rnorm(8),
@@ -18,37 +19,41 @@ hw1q1_df <- tibble(
   factor_vector = as.factor(c(1, 1, 2, 3, 2, 1, 2, 3)) 
 )
 
-mean(hw1q1_df$random_normsample)
-mean(hw1q1_df$pos_random_normsample)
-mean(hw1q1_df$charac_vector)
-mean(hw1q1_df$factor_vector)
+mean(pull(hw1q1_df, random_normsample))
+mean(pull(hw1q1_df, pos_random_normsample))
+mean(pull(hw1q1_df, charac_vector))
+mean(pull(hw1q1_df, factor_vector))
 ```
 Arguments that are not numeric or logical, such as character or factor arguments, will return NA, as seen by the error messages incurred above.
 
 ### Applying the as.numeric function to the logical, character, and factor variables:
+
 ```{r, eval = FALSE}
-num_pos_random_normsample <- as.numeric(hw1q1_df$pos_random_normsample)
-num_charac_vector <- as.numeric(hw1q1_df$charac_vector)
-num_factor_vector <- as.numeric(hw1q1_df$factor_vector)
+num_pos_random_normsample <- as.numeric(pull(hw1q1_df, pos_random_normsample))
+num_charac_vector <- as.numeric(pull(hw1q1_df, charac_vector))
+num_factor_vector <- as.numeric(pull(hw1q1_df, factor_vector))
 ```
-By utilizing `as.numeric`, we are changing the class of the variables from their original form to numeric. This enables us to calculate the mean of numbers. In my specific case, there is still an error when I use `as.numeric(hw1q1_df$charac_vector)` because my character vector is comprised of letters, which cannot be averaged.
+By utilizing `as.numeric`, we are changing the class of the variables from their original form to numeric. This enables us to calculate the mean of numbers. In my specific case, there is still an error when I use `as.numeric(pull(hw1q1_df, charac_vector))` because my character vector is comprised of letters, which cannot be averaged.
 
 ### Converting logical factors
+
 ```{r}
 # Logical vector to numeric, multiply random sample by result
-num_pos_random_normsample <- as.numeric(hw1q1_df$pos_random_normsample)
-num_pos_random_normsample*hw1q1_df$random_normsample
+num_pos_random_normsample <- as.numeric(pull(hw1q1_df, pos_random_normsample))
+num_pos_random_normsample*(pull(hw1q1_df, random_normsample))
 
 # Logical vector to factor, multiply random sample by result
-fac_pos_random_normsample <- as.factor(hw1q1_df$pos_random_normsample)
-fac_pos_random_normsample*hw1q1_df$random_normsample
+fac_pos_random_normsample <- as.factor(pull(hw1q1_df, pos_random_normsample))
+fac_pos_random_normsample*(pull(hw1q1_df, random_normsample))
 
 #Logical vector to factor, convert result to numeric, multiple random sample by result
 num_fac_pos_random_normsample <- as.numeric(fac_pos_random_normsample)
-num_fac_pos_random_normsample*hw1q1_df$random_normsample
+num_fac_pos_random_normsample*(pull(hw1q1_df, random_normsample))
 ```
 
 # Homework 1 Question 2
+
+## Creating the dataframe request in question 2
 ```{r}
 hw1q2_df <- tibble(
   x = rnorm(500),
@@ -59,18 +64,22 @@ hw1q2_df <- tibble(
 )
 ```
 * The size of the dataset is `r nrow(hw1q2_df)` observations and `r ncol(hw1q2_df)` variables.
-* The mean, median, and standard deviation of x are respectively `r mean(hw1q2_df$x)`, `r median(hw1q2_df$x)`, and `r sd(hw1q2_df$x)`.
-* The proportion of cases which `x + y > 1 ` is true is `r sum(hw1q2_df$greater_than_combined, na.rm = TRUE)/nrow(hw1q2_df)`.
+
+* The mean, median, and standard deviation of x are respectively `r mean(pull(hw1q2_df, x))`, `r median((pull(hw1q2_df, x)))`, and `r sd(pull(hw1q2_df, x))`.
+
+* The proportion of cases which `x + y > 1 ` is true is `r sum(pull(hw1q2_df, greater_than_combined), na.rm = TRUE)/nrow(hw1q2_df)`.
+
+## Scatterplots of y vs x
 ```{r}
-ggplot(hw1q2_df, aes(x = x, y = y, color = greater_than_combined)) +
+ggplot(hw1q2_df, aes(x = y, y = x, color = greater_than_combined)) +
   geom_point()
 
-ggplot(hw1q2_df, aes(x = x, y = y, color = num_greater_than_comb)) +
+ggplot(hw1q2_df, aes(x = y, y = x, color = num_greater_than_comb)) +
   geom_point()
 
-ggplot(hw1q2_df, aes(x = x, y = y, color = fac_greater_than_comb)) +
+ggplot(hw1q2_df, aes(x = y, y = x, color = fac_greater_than_comb)) +
   geom_point()
 
 ggsave("logical_plot.png")
 ```
-
+The scatterplots color distribution looks the same, but the scale legend for the numerical variable is continuous while the scales legends for the logical and factor are binary. 
