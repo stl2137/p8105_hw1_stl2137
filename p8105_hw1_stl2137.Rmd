@@ -74,12 +74,13 @@ hw1q2_df <- tibble(
 ggplot(hw1q2_df, aes(x = y, y = x, color = greater_than_combined)) +
   geom_point()
 
+ggsave("logical_plot.png")
+
 ggplot(hw1q2_df, aes(x = y, y = x, color = num_greater_than_comb)) +
   geom_point()
 
 ggplot(hw1q2_df, aes(x = y, y = x, color = fac_greater_than_comb)) +
   geom_point()
 
-ggsave("logical_plot.png")
 ```
 The scatterplots color distribution looks the same, but the scale legend for the numerical variable is continuous while the scales legends for the logical and factor are binary. 
